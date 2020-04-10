@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using xam_onlineticket.Views;
 using Xamarin.Forms.Xaml;
 
 namespace xam_onlineticket
@@ -10,7 +11,7 @@ namespace xam_onlineticket
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

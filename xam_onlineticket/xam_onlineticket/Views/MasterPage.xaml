@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xam_onlineticket.Views.MasterPage"
+             xmlns:helpers="clr-namespace:xam_onlineticket.Helpers"
+             IconImageSource="{FontImage
+                                FontFamily={StaticResource MaterialFontFamily},
+                                Glyph={x:Static helpers:IconFont.SortVariant},
+                                Color={StaticResource PrimaryTextColor}}"
+             Title="Master Page">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="268" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0"
+                     Padding="0, 0, 0, 50"
+                     BackgroundColor="{StaticResource PrimaryBackgroundColor}">
+            <Image Source="logo.png"
+                   HeightRequest="120"
+                   VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+        <StackLayout Padding="15, 30, 0, 0"
+                     Grid.Row="1">
+            <ListView x:Name="MenuCollection"
+                      HasUnevenRows="true"
+                      SelectionMode="Single"
+                      SeparatorColor="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.8*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0"
+                                         Grid.Column="0">
+                                <Image HeightRequest="20"
+                                       VerticalOptions="CenterAndExpand">
+                                    <Image.Source>
+                                        <FontImageSource
+                                                FontFamily="{StaticResource MaterialFontFamily}"
+                                                Glyph="{Binding Icon}"
+                                                Color="{StaticResource SecondaryTextColor}" />
+                                    </Image.Source>
+                                </Image>
+                
+                            </StackLayout>
+                            <Label Text="{Binding Title}"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   FontSize="Large"
+                                   VerticalOptions="CenterAndExpand"
+                                   TextColor="{StaticResource SecondaryTextColor}"/>
+                        </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

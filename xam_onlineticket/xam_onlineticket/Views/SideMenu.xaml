@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:CustomMasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:views="clr-namespace:xam_onlineticket.Views"
+                  x:Class="xam_onlineticket.SideMenu"
+                  xmlns:helpers="clr-namespace:xam_onlineticket.Helpers"
+                  xmlns:controls="clr-namespace:xam_onlineticket.CustomControls"
+                  IconImageSource="{FontImage
+                                FontFamily={StaticResource MaterialFontFamily},
+                                Glyph={x:Static helpers:IconFont.SortVariant},
+                                Color={StaticResource SecondaryTextColor}}">
+    <controls:CustomMasterDetailPage.Master>
+        <views:MasterPage x:Name="masterPage"/>
+    </controls:CustomMasterDetailPage.Master>
+
+    <controls:CustomMasterDetailPage.Detail>
+        <controls:CustomNavigationPage>
+            <x:Arguments>
+                <views:TicketDetailPage />
+            </x:Arguments>
+        </controls:CustomNavigationPage>
+    </controls:CustomMasterDetailPage.Detail>
+</controls:CustomMasterDetailPage>

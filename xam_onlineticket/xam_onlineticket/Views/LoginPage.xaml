@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xam_onlineticket.Views.LoginPage"
+             xmlns:input="clr-namespace:LeoJHarris.FormsPlugin.Abstractions;assembly=LeoJHarris.FormsPlugin.Abstractions"
+             xmlns:helpers="clr-namespace:xam_onlineticket.Helpers"
+             BackgroundColor="{StaticResource PrimaryBackgroundColor}"
+             Padding="32">
+    <ContentPage.Content>
+        <FlexLayout Direction="Column">
+            <StackLayout FlexLayout.Grow="1">
+                <Image Source="logo.png"
+                       HeightRequest="163"
+                       VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout FlexLayout.Grow="1.3">
+                <input:EnhancedEntry
+                    TextColor="{StaticResource PrimaryTextColor}"
+                    LeftIcon="mail"
+                    PaddingLeftIcon="40"
+                    FontSize="18"
+                    Placeholder="Username"
+                    PlaceholderColor="{StaticResource PrimaryTextColor}"
+                    BackgroundColor="{StaticResource PrimaryBackgroundColor}"
+                    />
+            <BoxView HeightRequest="1" BackgroundColor="{StaticResource TertiaryColor}" >
+                <BoxView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0, 5, 0, 0" />
+                        <On Platform="Android" Value="0, -5, 0, 0" />
+                    </OnPlatform>
+                </BoxView.Margin>
+            </BoxView>
+
+            <BoxView HeightRequest="20" />
+
+            <input:EnhancedEntry
+                TextColor="{StaticResource PrimaryTextColor}"
+                LeftIcon="lock"
+                PaddingLeftIcon="40"
+                FontSize="18"
+                Placeholder="Password"
+                PlaceholderColor="{StaticResource PrimaryTextColor}"
+                BackgroundColor="{StaticResource PrimaryBackgroundColor}"
+                IsPassword="True"/>
+            <BoxView HeightRequest="1" BackgroundColor="{StaticResource TertiaryColor}" >
+                <BoxView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0, 5, 0, 0" />
+                        <On Platform="Android" Value="0, -5, 0, 0" />
+                    </OnPlatform>
+                </BoxView.Margin>
+            </BoxView>
+
+            <Label Text="Forget password?"
+                   HorizontalOptions="End"
+                   TextColor="{StaticResource PrimaryTextColor}"
+                   FontSize="Small"/>
+
+            <Button Text="LOG IN"
+                    CornerRadius="10"
+                    FontSize="Body"
+                    HeightRequest="45"
+                    BackgroundColor="{StaticResource TertiaryColor}"
+                    TextColor="{StaticResource PrimaryTextColor}"
+                    Margin="0, 40, 0, 15"
+                    Clicked="Button_Clicked"/>
+            <Label Text="Don't have an account? Sign up"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource PrimaryTextColor}"
+                   FontSize="Small"/>
+            </StackLayout>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
