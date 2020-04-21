@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customControls:CustomViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                               xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+                               xmlns:behavior="clr-namespace:xam_onlineticket.Behaviors"
+                               x:Class="xam_onlineticket.Controls.TravelTicketTemplate"
+                               xmlns:customControls="clr-namespace:xam_onlineticket.CustomControls"
+                               xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                               xmlns:controls="clr-namespace:xam_onlineticket.Controls"
+                               SelectedBackgroundColor="Transparent"
+                               Height="152">
+    <ViewCell.View>
+        <yummy:PancakeView HasShadow="True"
+                           Margin="16, 15, 16, 15"
+                           BackgroundColor="Transparent">
+            <AbsoluteLayout>
+                <skia:SKCanvasView AbsoluteLayout.LayoutFlags="All"
+                                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" >
+                    <skia:SKCanvasView.Behaviors>
+                        <behavior:TicketBackgroundBehavior />
+                    </skia:SKCanvasView.Behaviors>
+                </skia:SKCanvasView>
+                <Grid AbsoluteLayout.LayoutFlags="All"
+                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                      HeightRequest="132">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <controls:QRCode TicketDetail="{Binding ., Converter={StaticResource ObjectToString }}"
+                                         TicketNo="{Binding TicketId}"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand"
+                                         Valid="{Binding Valid}"
+                                         Used="{Binding Used}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1">
+                         <Image Source="travel.png"
+                                HorizontalOptions="End"
+                                VerticalOptions="EndAndExpand"
+                                HeightRequest="69"/>
+                    </StackLayout>
+                    <FlexLayout Grid.Column="1"
+                                Padding="5"
+                                JustifyContent="SpaceBetween"
+                                Direction="Column">
+                        <StackLayout Spacing="0"
+                                     Orientation="Horizontal">
+                            <StackLayout Spacing="0"
+                                         HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding Title}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource PrimaryTextColor}"/>
+                                <Label Text="{Binding Transportation}"
+                                       FontSize="11"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource PrimaryTextColor}"/>
+                            </StackLayout>
+                            <StackLayout Spacing="0"
+                                         WidthRequest="110">
+                                <Frame Padding="4, 2, 4, 2"
+                                       CornerRadius="3"
+                                       HasShadow="False"
+                                       HeightRequest="15"
+                                       HorizontalOptions="EndAndExpand">
+                                       <Label Text="{Binding Price, StringFormat='TICKET PRICE : €{0}'}"
+                                              FontSize="10"
+                                              TextColor="{StaticResource TertiaryColor}"
+                                              VerticalOptions="CenterAndExpand"/>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                            
+                        <FlexLayout Direction="Row"
+                                    FlexLayout.Grow="1"
+                                    AlignItems="Center">
+                            <StackLayout Spacing="0"
+                                         HorizontalOptions="EndAndExpand"
+                                         WidthRequest="140">
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="0">
+                                    <Label Text="von : "
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding From}"
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="0">
+                                    <Label Text="über : "
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding Through}"
+                                           FontSize="12"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Spacing="0"
+                                         HorizontalOptions="EndAndExpand"
+                                         WidthRequest="140">
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="0">
+                                    <Label Text="nach :"
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding To}"
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="0">
+                                    <Label Text="Preisstufe : "
+                                           FontSize="11"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                    <Label Text="."
+                                           FontSize="12"
+                                           TextColor="{StaticResource PrimaryTextColor}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </FlexLayout>
+
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="0">
+                            <Label Text="Gültig am :"
+                                   FontSize="11"
+                                   TextColor="{StaticResource PrimaryTextColor}"/>
+                            <Label Text="{Binding PurchaseDate}"
+                                   FontSize="11"
+                                   TextColor="{StaticResource PrimaryTextColor}"/>
+                        </StackLayout>
+                    </FlexLayout>
+                </Grid>
+            </AbsoluteLayout>
+        </yummy:PancakeView>
+    </ViewCell.View>
+</customControls:CustomViewCell>

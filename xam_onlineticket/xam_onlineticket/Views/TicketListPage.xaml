@@ -1,10 +1,76 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:xam_onlineticket.Controls"
              x:Class="xam_onlineticket.Views.TicketListPage">
-    <ContentPage.Content>
-        <Label Text="Ticket list page"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
-    </ContentPage.Content>
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:TicketDataTemplateSelector x:Key="TicketDataTemplateSelector" />
+        </ResourceDictionary>
+     </ContentPage.Resources>
+    <AbsoluteLayout BackgroundColor="{StaticResource SecondaryBackgroundColor}">
+            <BoxView Color="{StaticResource PrimaryBackgroundColor}"
+                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 185"/>
+            <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <Label Text="Tickets"
+                       FontSize="34"
+                       FontAttributes="Bold"
+                       Padding="16, 0, 16, 0"
+                       TextColor="{StaticResource PrimaryTextColor}"/>
+                <FlexLayout Padding="16, 16, 16, 0">
+                    <Label Text="Valid"
+                           FontSize="20"
+                           WidthRequest="70"
+                           Margin="0, 0, 20, 0"
+                           TextColor="{StaticResource PrimaryTextColor}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectValid" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Expired"
+                           FontSize="20"
+                           WidthRequest="90"
+                           Margin="0, 0, 20, 0"
+                           TextColor="{StaticResource PrimaryTextColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectExpired" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="All"
+                           FontSize="20"
+                           WidthRequest="50"
+                           Margin="0, 0, 20, 0"
+                           TextColor="{StaticResource PrimaryTextColor}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectAll" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </FlexLayout>
+                <AbsoluteLayout BackgroundColor="#AF474C">
+                    <BoxView x:Name="Indicator"
+                             HeightRequest="3"
+                             Margin="16, 0, 16, 0"
+                             WidthRequest="70"
+                             BackgroundColor="{StaticResource PrimaryTextColor}" />
+                </AbsoluteLayout>
+                <ListView x:Name="ticketList"
+                          HasUnevenRows="True"
+                          BackgroundColor="Transparent"
+                          SeparatorColor="Transparent"
+                          SelectionMode="Single"
+                          ItemsSource="{Binding TicketList}"
+                          ItemTemplate="{StaticResource TicketDataTemplateSelector}"
+                          VerticalScrollBarVisibility="Never"
+                          ItemTapped="ticketList_ItemTapped">
+                    <ListView.Header>
+                        <BoxView HeightRequest="10" />
+                    </ListView.Header>
+                    <ListView.Footer>
+                        <BoxView HeightRequest="10" />
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

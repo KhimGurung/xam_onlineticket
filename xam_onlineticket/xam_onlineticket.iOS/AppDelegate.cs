@@ -22,6 +22,7 @@ namespace xam_onlineticket.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
 
             LeoJHarris.FormsPlugin.iOS.EnhancedEntryRenderer.Init();

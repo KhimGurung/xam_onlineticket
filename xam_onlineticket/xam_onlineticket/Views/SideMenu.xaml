@@ -16,7 +16,7 @@
     <controls:CustomMasterDetailPage.Detail>
         <controls:CustomNavigationPage>
             <x:Arguments>
-                <views:TicketDetailPage />
+                <views:TicketListPage />
             </x:Arguments>
         </controls:CustomNavigationPage>
     </controls:CustomMasterDetailPage.Detail>

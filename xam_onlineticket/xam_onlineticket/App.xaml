@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:xam_onlineticket.Converters"
              mc:Ignorable="d"
              x:Class="xam_onlineticket.App">
     <Application.Resources>
@@ -22,5 +23,14 @@
             <On Platform="iOS" Value="Material Design Icons" />
             <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
         </OnPlatform>
+
+        <converter:QRCodeConverter x:Key="QRCode" />
+        <converter:ValidToOpacityConverter x:Key="ValidToOpacity" />
+        <converter:UsedToExpiredTicketConverter x:Key="UsedToExpiredTicket" />
+        <converter:UsedToUsedTicketConverter x:Key="UsedToUsedTicket" />
+        <converter:ValidToVisibilityConverter x:Key="ValidToVisibility" />
+        <converter:ObjectToStringConverter x:Key="ObjectToString" />
+        <converter:LowerToUpperCaseConverter x:Key="ToUpperCase" />
+        <converter:TicketToVisibilityConverter x:Key="TicketToVisibility" />
     </Application.Resources>
 </Application>

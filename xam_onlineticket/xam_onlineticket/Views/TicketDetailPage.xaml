@@ -1,10 +1,69 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="xam_onlineticket.Views.TicketDetailPage">
-    <ContentPage.Content>
-        <Label Text="Ticket Detail Page"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
-    </ContentPage.Content>
+             x:Class="xam_onlineticket.Views.TicketDetailPage"
+             xmlns:control="clr-namespace:xam_onlineticket.Controls"
+             xmlns:behavior="clr-namespace:xam_onlineticket.Behaviors"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
+    <AbsoluteLayout BackgroundColor="{StaticResource SecondaryBackgroundColor}">
+            <BoxView Color="{StaticResource PrimaryBackgroundColor}"
+                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 185"/>
+            <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <Label Text="Ticket Detail"
+                       FontSize="34"
+                       FontAttributes="Bold"
+                       Margin="16, 0, 16, 0"
+                       TextColor="{StaticResource PrimaryTextColor}"/>
+                <ScrollView VerticalScrollBarVisibility="Never"
+                            Padding="0, 0, 0, 16">
+                    <AbsoluteLayout>
+                        <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                            <yummy:PancakeView Margin="16, 100, 16, 0"
+                                               CornerRadius="10"
+                                               HasShadow="True">
+                                <StackLayout Spacing="0">
+                                    <StackLayout BackgroundColor="{StaticResource WhiteColor}"
+                                                 Padding="0, 40, 0, 40">
+                                        <Image x:Name="qrCode"
+                                               HeightRequest="250"
+                                               WidthRequest="250" />
+                                        <Label Text="{Binding SelectedTicket.TicketId, StringFormat='NO: {0:F2}'}"
+                                               FontSize="17"
+                                               HorizontalOptions="CenterAndExpand"
+                                               TextColor="{StaticResource TertiaryColor}"/>
+                                    </StackLayout>
+                                    <skia:SKCanvasView HeightRequest="20">
+                                        <skia:SKCanvasView.Behaviors>
+                                            <behavior:TicketDividerBehavior />
+                                        </skia:SKCanvasView.Behaviors>
+                                    </skia:SKCanvasView>
+                                    <control:PartyTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='PartyTicket'}" />
+                                    <control:VisitTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='VisitTicket'}" />
+                                    <control:ShowTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='ShowTicket'}" />
+                                    <control:TravelTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='TravelTicket'}" />
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20"
+                                     Padding="32, 30, 16, 0">
+                            <Frame Padding="0"
+                                   HeightRequest="83"
+                                   WidthRequest="83"
+                                   CornerRadius="41.5">
+                                <Image Source="{Binding SelectedTicket.Logo}" />
+                            </Frame>
+                            <Label Text="{Binding SelectedTicket.Title}"
+                                   VerticalOptions="CenterAndExpand"
+                                   FontSize="25"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryTextColor}"/>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                </ScrollView>
+            </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

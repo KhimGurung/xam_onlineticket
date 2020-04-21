@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xam_onlineticket.Controls.QRCode"
+             x:Name="CustomQRCode">
+    <AbsoluteLayout>
+        <StackLayout>
+            <Image x:Name="qrCode"
+                   Source="{Binding TicketDetail, Converter={StaticResource QRCode}, Source={x:Reference CustomQRCode}}"
+                   HeightRequest="67"
+                   WidthRequest="67"
+                   ClassId="{Binding TicketDetail , Converter={StaticResource ObjectToString}, Source={x:Reference CustomQRCode}}"
+                   Opacity="{Binding Valid, Converter={StaticResource ValidToOpacity} , Source={x:Reference CustomQRCode}}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="ticketNo"
+                   Text="{Binding TicketNo, StringFormat='No. {0:F2}', Source={x:Reference CustomQRCode}}"
+                   FontSize="Micro"
+                   TextColor="{StaticResource TertiaryColor}"/>
+        </StackLayout>
+        <StackLayout x:Name="usedTicket"
+                     IsVisible="{Binding Valid, Converter={x:StaticResource ValidToVisibility}, Source={x:Reference CustomQRCode}}"
+                     Margin="-7, -7, 0, 0">
+            <Image Source="used.png"
+                   IsVisible="{Binding Used, Converter={x:StaticResource UsedToUsedTicket}, Source={x:Reference CustomQRCode}}"
+                   HeightRequest="60"/>
+        </StackLayout>
+        <StackLayout x:Name="expiredTicket"
+                     IsVisible="{Binding Valid, Converter={x:StaticResource ValidToVisibility}, Source={x:Reference CustomQRCode}}"
+                     Margin="-7, -7, 0, 0">
+            <Image Source="expired.png"
+                   IsVisible="{Binding Used, Converter={x:StaticResource UsedToExpiredTicket}, Source={x:Reference CustomQRCode}}"
+                   HeightRequest="60"/>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentView>

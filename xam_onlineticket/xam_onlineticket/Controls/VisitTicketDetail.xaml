@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xam_onlineticket.Controls.VisitTicketDetail">
+     <Grid BackgroundColor="{StaticResource TertiaryColor}">
+         <StackLayout Grid.Column="0">
+                 <Image Source="visit.png"
+                        HeightRequest="100"
+                        WidthRequest="150"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="EndAndExpand"
+                        Aspect="AspectFit"/>
+         </StackLayout>
+         
+         <StackLayout Padding="16, 16, 16, 23"
+                     Grid.Column="0">
+             <StackLayout Spacing="20">
+                 <StackLayout Spacing="0"
+                              Orientation="Horizontal">
+                     <StackLayout Spacing="0">
+                         <Label Text="PURCHASE ON"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource PrimaryTextColor}"/>
+                         <Label Text="{Binding SelectedTicket.PurchaseDate}"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource PrimaryTextColor}"/>
+                     </StackLayout>
+                     <StackLayout Spacing="0"
+                                  HorizontalOptions="EndAndExpand">
+                         <Frame Padding="4"
+                                CornerRadius="3"
+                                HasShadow="False"
+                                HeightRequest="25"
+                                HorizontalOptions="EndAndExpand">
+                                <Label Text="{Binding SelectedTicket.Price, StringFormat='TICKET PRICE : €{0}'}"
+                                       FontSize="15"
+                                       TextColor="{StaticResource TertiaryColor}"
+                                       VerticalOptions="CenterAndExpand"/>
+                         </Frame>
+                     </StackLayout>
+                 </StackLayout>
+
+                 <StackLayout Spacing="0">
+                    <Label Text="VALIDITY"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Label Text="Ticket is for one time use after purchase."
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}"/>
+                 </StackLayout>
+
+                 <FlexLayout Direction="Row"
+                             JustifyContent="SpaceBetween">
+                     <StackLayout Spacing="0">
+                        <Label Text="OPENING HOUR"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryTextColor}"/>
+                         <StackLayout Orientation="Horizontal"
+                                      Spacing="0">
+                            <Label Text="{Binding SelectedTicket.OpenTime, StringFormat='{0}-'}"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryTextColor}"/>
+                             <Label Text="{Binding SelectedTicket.CloseTime}"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryTextColor}"/>
+                         </StackLayout>
+                     </StackLayout>
+                     <StackLayout Spacing="0">
+                        <Label Text="LAST ENTRY"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryTextColor}"/>
+                        <Label Text="{Binding SelectedTicket.LastEntry}"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryTextColor}"/>
+                     </StackLayout>
+                     <StackLayout Spacing="0">
+                        <Label Text="GENERAL ADMISSION"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryTextColor}"/>
+                        <Label Text="SINGLE ENTRY"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryTextColor}"/>
+                     </StackLayout>
+                 </FlexLayout>
+
+                 <StackLayout Spacing="0">
+                    <Label Text="ADDRESS"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Label Text="{Binding SelectedTicket.Address}"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}"/>
+                 </StackLayout>
+
+                 <StackLayout Orientation="Horizontal"
+                              Spacing="10"
+                              Padding="0, 0, 0, 20">
+                     <Image Source="camera.png" HeightRequest="30" />
+                     <Image Source="snacks.png" HeightRequest="30" />
+                 </StackLayout>
+             </StackLayout>
+             <Label Text="Note: This ticket is non-refundable and non-transfarrable."
+                    FontSize="Micro"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+             <Label Text="Terms and condition of this ticket are available in the website or from any ticket or information desk:"
+                    FontSize="Micro"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+             <Label Text="Go to website"
+                    FontSize="Micro"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+         </StackLayout>
+     </Grid>
+</ContentView>

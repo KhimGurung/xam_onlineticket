@@ -19,8 +19,11 @@ namespace xam_onlineticket.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
 
             LeoJHarris.FormsPlugin.Droid.EnhancedEntryRenderer.Init(this);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
