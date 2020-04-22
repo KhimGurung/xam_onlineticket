@@ -6,6 +6,7 @@
     <AbsoluteLayout>
         <StackLayout>
             <Image x:Name="qrCode"
+                   InputTransparent="{Binding Valid, Converter={x:StaticResource ValidToVisibility}, Source={x:Reference CustomQRCode}}"
                    Source="{Binding TicketDetail, Converter={StaticResource QRCode}, Source={x:Reference CustomQRCode}}"
                    HeightRequest="67"
                    WidthRequest="67"

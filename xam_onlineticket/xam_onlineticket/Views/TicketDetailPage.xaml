@@ -81,6 +81,7 @@
                                      Spacing="20"
                                      Padding="32, 30, 16, 0">
                             <Frame Padding="0"
+                                   HasShadow="False"
                                    HeightRequest="83"
                                    WidthRequest="83"
                                    CornerRadius="41.5">
