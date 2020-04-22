@@ -24,27 +24,57 @@
                             <yummy:PancakeView Margin="16, 100, 16, 0"
                                                CornerRadius="10"
                                                HasShadow="True">
-                                <StackLayout Spacing="0">
-                                    <StackLayout BackgroundColor="{StaticResource WhiteColor}"
-                                                 Padding="0, 40, 0, 40">
-                                        <Image x:Name="qrCode"
-                                               HeightRequest="250"
-                                               WidthRequest="250" />
-                                        <Label Text="{Binding SelectedTicket.TicketId, StringFormat='NO: {0:F2}'}"
-                                               FontSize="17"
-                                               HorizontalOptions="CenterAndExpand"
-                                               TextColor="{StaticResource TertiaryColor}"/>
-                                    </StackLayout>
-                                    <skia:SKCanvasView HeightRequest="20">
-                                        <skia:SKCanvasView.Behaviors>
-                                            <behavior:TicketDividerBehavior />
-                                        </skia:SKCanvasView.Behaviors>
-                                    </skia:SKCanvasView>
-                                    <control:PartyTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='PartyTicket'}" />
-                                    <control:VisitTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='VisitTicket'}" />
-                                    <control:ShowTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='ShowTicket'}" />
-                                    <control:TravelTicketDetail IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='TravelTicket'}" />
-                                </StackLayout>
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                    
+                                        <StackLayout BackgroundColor="{StaticResource WhiteColor}"
+                                                     Padding="0, 40, 0, 40"
+                                                     Grid.Row="0">
+                                            <Image x:Name="qrCode"
+                                                   Opacity="{Binding SelectedTicket.Valid, Converter={StaticResource ValidToOpacity}}"
+                                                   HeightRequest="250"
+                                                   WidthRequest="250" />
+                                            <Label Text="{Binding SelectedTicket.TicketId, StringFormat='NO: {0:F2}'}"
+                                                   FontSize="17"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   TextColor="{StaticResource TertiaryColor}"/>
+                                        </StackLayout>
+                                        <AbsoluteLayout IsVisible="{Binding SelectedTicket.Valid, Converter={StaticResource TicketToVisibility}, ConverterParameter= 'ticketStatus'}"
+                                                        Padding="0, 0, 0, 40">
+                                            <Image Source="expired.png"
+                                                   AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                                                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                                   Grid.Row="0"
+                                                   IsVisible="{Binding SelectedTicket.Used, Converter={StaticResource TicketToVisibility}, ConverterParameter= 'expired'}"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   HeightRequest="150"
+                                                   WidthRequest="150" />
+
+                                            <Image Source="used.png"
+                                                   AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                                                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                                   Grid.Row="0"
+                                                   IsVisible="{Binding SelectedTicket.Used, Converter={StaticResource TicketToVisibility}, ConverterParameter= 'used'}"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   HeightRequest="150"
+                                                   WidthRequest="150" />
+                                        </AbsoluteLayout>
+
+                                        <skia:SKCanvasView HeightRequest="20"
+                                                           Grid.Row="1">
+                                            <skia:SKCanvasView.Behaviors>
+                                                <behavior:TicketDividerBehavior />
+                                            </skia:SKCanvasView.Behaviors>
+                                        </skia:SKCanvasView>
+                                        <control:PartyTicketDetail Grid.Row="2" IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='PartyTicket'}" />
+                                        <control:VisitTicketDetail Grid.Row="2" IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='VisitTicket'}" />
+                                        <control:ShowTicketDetail Grid.Row="2" IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='ShowTicket'}" />
+                                        <control:TravelTicketDetail Grid.Row="2" IsVisible="{Binding SelectedTicket, Converter={StaticResource TicketToVisibility}, ConverterParameter='TravelTicket'}" />
+                                    </Grid>
                             </yummy:PancakeView>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal"
